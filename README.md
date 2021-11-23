@@ -7,5 +7,6 @@ gin的脚手架
 解决gitignore的问题
 
 git rm -r --cached .
+
 git add .
 
