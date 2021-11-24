@@ -1,6 +1,8 @@
 package controller
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Message struct {
 	msg string
@@ -36,12 +38,12 @@ func (e Event) Start() {
 	fmt.Println(msg.msg)
 }
 
-func NormalStart() {
-	m := NewMessage("hello wire")
-	g := NewGreeter(m)
-	event := NewEvent(g)
-	event.Start()
-}
+//func NormalStart() {
+//	m := NewMessage("hello wire")
+//	g := NewGreeter(m)
+//	event := NewEvent(g)
+//	event.Start()
+//}
 
 func WireStart() {
 	e := InitializeEvent("Hello MyWire")
