@@ -14,4 +14,9 @@ var Set = wire.NewSet(wire.Struct(new(Router), "*"))
 
 func (r Router) RegisterRouter(router *gin.Engine) {
 	router.GET("/hello", r.UserCtl.Users)
+
+	user := router.Group("user")
+	{
+		user.POST("/user", r.UserCtl.AddUser)
+	}
 }
