@@ -4,10 +4,10 @@
 #
 #RELEASE_VERSION = v1.0.0
 
-#APP_SERVER 		= server
-#APP_API 		= app
-#BIN_SERVER  	= ./build/${APP_SERVER}
-#BIN_API 		= ./build/${APP_API}
+APP_SERVER 		= server
+APP_API 		= api
+BIN_SERVER  	= ./build/${APP_SERVER}
+BIN_API 		= ./build/${APP_API}
 #GIT_COUNT 		= $(shell git rev-list --all --count)
 #GIT_HASH        = $(shell git rev-parse --short HEAD)
 #RELEASE_TAG     = $(RELEASE_VERSION).$(GIT_COUNT).$(GIT_HASH)
@@ -16,9 +16,9 @@
 #
 #build: clean initConfig build-api build-server
 #
-#build-api:
-#	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 packr build -ldflags "-w -s -X main.VERSION=$(RELEASE_TAG)" -o $(BIN_API) ./cmd/${APP_API}
-#
+build-api:
+	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 packr build -ldflags "-w -s -X main.VERSION=$(RELEASE_TAG)" -o $(BIN_API) ./cmd/${APP_API}
+
 #build-server:
 #	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 packr build -ldflags "-w -s -X main.VERSION=$(RELEASE_TAG)" -o $(BIN_SERVER) ./cmd/${APP_SERVER}
 #
@@ -28,12 +28,12 @@
 #air-server:
 #	air -c .air-server.toml
 #
-#run-server:
-#	@go run -ldflags "-X main.VERSION=$(RELEASE_TAG)" ./cmd/${APP_SERVER}/main.go
-#
-#run-api:
-#	@go run -ldflags "-X main.VERSION=$(RELEASE_TAG)" ./cmd/${APP_API}/main.go
-#
+run-server:
+	@go run -ldflags "-X main.VERSION=$(RELEASE_TAG)" ./cmd/${APP_SERVER}/main.go
+
+run-api:
+	@go run -ldflags "-X main.VERSION=$(RELEASE_TAG)" ./cmd/${APP_API}/main.go
+
 #migrate: wire-server
 #	@go run ./cmd/migrate/main.go # 数据库迁移
 
