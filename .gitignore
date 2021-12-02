@@ -25,3 +25,4 @@ internal/api/wire_gen.go
 config/
 .env
 .yml
+.
