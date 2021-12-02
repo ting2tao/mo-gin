@@ -23,3 +23,4 @@ internal/app/controller/wire_gen.go
 config/
 .env
 .yml
+.
