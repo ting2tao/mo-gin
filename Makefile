@@ -19,6 +19,9 @@ BIN_API 		= ./build/${APP_API}
 build-api:
 	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 packr build -ldflags "-w -s -X main.VERSION=$(RELEASE_TAG)" -o $(BIN_API) ./cmd/${APP_API}
 
+build-win-api:
+	@go  build -ldflags "-w -s -X main.VERSION=$(REALEASE_TAG)" -o $(BIN_API).exe ./cmd/${APP_API}
+
 #build-server:
 #	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 packr build -ldflags "-w -s -X main.VERSION=$(RELEASE_TAG)" -o $(BIN_SERVER) ./cmd/${APP_SERVER}
 #
@@ -40,8 +43,8 @@ run-api:
 wire-server:
 	@wire gen ./app/server
 
-wire-app:
-	@wire gen ./internal/app
+wire-api:
+	@wire gen ./internal/api
 
 #clean:
 #	@rm -rf $(BIN_SERVER)

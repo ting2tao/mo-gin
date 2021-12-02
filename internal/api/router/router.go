@@ -3,7 +3,7 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"
-	"github.com/slovty/mo-gin/internal/app/controller"
+	"github.com/slovty/mo-gin/internal/api/controller"
 )
 
 type Router struct {

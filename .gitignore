@@ -15,9 +15,11 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+/build
 
 
-internal/app/controller/wire_gen.go
+internal/api/controller/wire_gen.go
+internal/api/wire_gen.go
 */wire_gen.go
 
 config/
