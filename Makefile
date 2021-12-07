@@ -26,7 +26,7 @@ build-win-api:
 #	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 packr build -ldflags "-w -s -X main.VERSION=$(RELEASE_TAG)" -o $(BIN_SERVER) ./cmd/${APP_SERVER}
 #
 #air-api:
-#	air -c .air-api.toml
+#	air -c .air-api.toml  
 #
 #air-server:
 #	air -c .air-server.toml
