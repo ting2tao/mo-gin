@@ -3,15 +3,21 @@ package controller
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/slovty/mo-gin/pkg/config"
 	"github.com/slovty/mo-gin/pkg/response"
 	"net/http"
 )
 
 type UserCtl struct {
+	*config.Config
 }
 
 func (ctl UserCtl) Users(ctx *gin.Context) {
-	response.Success(ctx, 0, "ok", gin.H{"hello": "users"})
+	uri := ctl.Config.Get("SCT")
+	fmt.Println(uri)
+	uri = ctl.Config.GetString("MYSQL_URI")
+	fmt.Println(uri)
+	response.Success(ctx, 0, "ok", gin.H{"hello": "users111"})
 }
 
 func (ctl UserCtl) MyUsers(ctx *gin.Context) {
@@ -21,5 +27,10 @@ func (ctl UserCtl) MyUsers(ctx *gin.Context) {
 
 func (ctl UserCtl) AddUser(ctx *gin.Context) {
 	ctx.JSON(200, gin.H{"add": "add user 1"})
+	fmt.Println("hello AddUser")
+}
+
+func (ctl UserCtl) UpdateUser(ctx *gin.Context) {
+	ctx.JSON(200, gin.H{"update": "update user 1"})
 	fmt.Println("hello AddUser")
 }
