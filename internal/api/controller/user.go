@@ -13,11 +13,11 @@ type UserCtl struct {
 }
 
 func (ctl UserCtl) Users(ctx *gin.Context) {
-	uri := ctl.Config.Get("SCT")
+
+	uri := ctl.Config.GetString("MYSQL_URI")
 	fmt.Println(uri)
-	uri = ctl.Config.GetString("MYSQL_URI")
-	fmt.Println(uri)
-	response.Success(ctx, 0, "ok", gin.H{"hello": "users111"})
+
+	response.Success(ctx, 0, "ok", gin.H{"hello": "users111", "sct": ctl.Config.GetString("SCT")})
 }
 
 func (ctl UserCtl) MyUsers(ctx *gin.Context) {
