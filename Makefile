@@ -46,7 +46,7 @@ wire-server:
 wire-api:
 	@wire gen ./internal/api
 
-#clean:
+#clean: 
 #	@rm -rf $(BIN_SERVER)
 #	@rm -rf $(BIN_API)
 #	@rm -rf ./configs/config.ini
