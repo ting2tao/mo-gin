@@ -3,21 +3,32 @@ package controller
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/slovty/mo-gin/pkg/cache"
 	"github.com/slovty/mo-gin/pkg/config"
 	"github.com/slovty/mo-gin/pkg/response"
+	"gorm.io/gorm"
 	"net/http"
 )
 
 type UserCtl struct {
 	*config.Config
+	*gorm.DB
+	*cache.RedisClient
 }
 
 func (ctl UserCtl) Users(ctx *gin.Context) {
-
-	uri := ctl.Config.GetString("MYSQL_URI")
-	fmt.Println(uri)
-
-	response.Success(ctx, 0, "ok", gin.H{"hello": "users111", "sct": ctl.Config.GetString("SCT")})
+	var users []map[string]interface{}
+	ctl.DB.Table("user").Find(&users)
+	var s string
+	var err error
+	if s, err = ctl.RedisClient.Get("sct"); err != nil {
+		fmt.Println(err.Error())
+	}
+	response.Success(ctx, 0, "ok", gin.H{
+		"users": users,
+		"sct":   ctl.Config.GetString("SCT"),
+		"cache": s,
+	})
 }
 
 func (ctl UserCtl) MyUsers(ctx *gin.Context) {
